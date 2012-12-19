@@ -1,0 +1,15 @@
+/*
+ * tpl2module
+ * https://github.com/minddriven/tpl2module
+ *
+ * Copyright (c) 2012 Tom Tang
+ * Licensed under the MIT license.
+ */
+
+(function(exports) {
+
+  exports.awesome = function() {
+    return 'awesome';
+  };
+
+}(typeof exports === 'object' && exports || this));
