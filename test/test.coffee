@@ -1,13 +1,13 @@
 "use strict"
 
-describe "test tpl2module", ()->
-    tpl2module = require '..'
+describe "test tpl2js", ()->
+    tpl2js = require '..'
     assert = require 'assert'
     path = require 'path'
     fixtures_folder = path.resolve(__dirname, './fixtures/')
     
 
     it 'should return sth', (done)->
-        tpl2module.compile fixtures_folder, (ret)->
+        tpl2js.compile fixtures_folder, (ret)->
             console.log ret
             done()

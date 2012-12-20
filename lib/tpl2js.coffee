@@ -4,6 +4,7 @@ walk = require 'walk'
 fs = require 'fs'
 path = require 'path'
 
+version = '0.10'
 
 compile = (folder, cb=null, exts=['.txt', '.html', '.htm', '.tpl'], dest_path=null) ->
 	ret = {}
@@ -32,3 +33,4 @@ compile = (folder, cb=null, exts=['.txt', '.html', '.htm', '.tpl'], dest_path=nu
 			cb(ret)
 
 exports.compile = compile
+exports.version = version

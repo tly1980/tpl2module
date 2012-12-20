@@ -8,14 +8,23 @@ module.exports = function(grunt) {
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\n" : "" %>' +
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-        ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
+        ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */',
+
+      node_exe: '#!/usr/bin/env node'
     },
+
     concat: {
+      // dist: {
+      //   src: ['<banner:meta.banner>', '<file_strip_banner:lib/<%= pkg.name %>.js>'],
+      //   dest: 'dist/<%= pkg.name %>.js'
+      // },
+
       dist: {
-        src: ['<banner:meta.banner>', '<file_strip_banner:lib/<%= pkg.name %>.js>'],
-        dest: 'dist/<%= pkg.name %>.js'
+        src:['<banner:meta.node_exe>', 'bin/tpl2js.js'],
+        dest: 'bin/tpl2js'
       }
     },
+
     min: {
       dist: {
         src: ['<banner:meta.banner>', '<config:concat.dist.dest>'],
@@ -29,10 +38,12 @@ module.exports = function(grunt) {
       //files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
       files: ['grunt.js', 'lib/**/*.js']
     },
+
     watch: {
       files: '<config:lint.files>',
       tasks: 'lint test'
     },
+
     coffee:{
       options: {
         //bare: true
@@ -40,6 +51,7 @@ module.exports = function(grunt) {
       compile:{
           files:{
             'lib/*.js':  'lib/*.coffee',
+            'bin/*.js': 'bin/*.coffee',
             'test/*.js': 'test/*.coffee'
           }
       }
@@ -79,6 +91,6 @@ module.exports = function(grunt) {
 
   // Default task.
   //grunt.registerTask('default', 'lint test concat min');
-  grunt.registerTask('default', 'coffee lint test');
+  grunt.registerTask('default', 'coffee lint concat test');
 
 };
