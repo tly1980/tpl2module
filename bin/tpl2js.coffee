@@ -4,7 +4,7 @@ tpl2js = require '..'
 path = require 'path'
 ArgumentParser = require('argparse').ArgumentParser
 fs = require 'fs'
-seq = require 'seq'
+#seq = require 'seq'
 
 parser = new ArgumentParser({
   version: tpl2js.version,
@@ -55,28 +55,26 @@ if args.out == null
     args.out = path.basename(args.src_folder)
     args.out = args.out.replace('/', '')
 
-js_tpl = ''
+if args.out[0] != '/'
+    outpath = args.out
+else
+    outpath = path.join(__dirname, args.out)
 
-amdjs_tpl = '''
-define(
-    #{content}
-);
-
-'''
 
 tpl2js.compile args.src_folder, (ret)->
     content = JSON.stringify ret
-    json_path = path.join args.src_folder, args.out + '.json'
-    js_path = path.join args.src_folder, args.out + '.js'
+    json_path = outpath + '.json'
+    js_path = outpath + '.js'
+    
+    if 'json' in args.types
+        console.log 'writing to', json_path
+        fs.writeFileSync json_path, content
 
-    
-    ()->
-        if 'json' in args.types
-            fs.writeFile json_path, content
-    
-    ()->
-        if 'js' in args.types
-            fs.writeFile js_path, content
+
+    if args.amdjs
+        the_content = "define(#{content});"
+        console.log 'writing to', js_path
+        fs.writeFileSync js_path, the_content
     
         
-    console.log 'args', args, content
+    console.log 'args', args, content, outpath

@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  var ArgumentParser, args, fs, parser, path, seq, tpl2js,
+  var ArgumentParser, args, fs, outpath, parser, path, tpl2js,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   tpl2js = require('..');
@@ -11,8 +11,6 @@
   ArgumentParser = require('argparse').ArgumentParser;
 
   fs = require('fs');
-
-  seq = require('seq');
 
   parser = new ArgumentParser({
     version: tpl2js.version,
@@ -64,25 +62,27 @@
     args.out = args.out.replace('/', '');
   }
 
+  if (args.out[0] !== '/') {
+    outpath = args.out;
+  } else {
+    outpath = path.join(__dirname, args.out);
+  }
+
   tpl2js.compile(args.src_folder, function(ret) {
-    var content, js_path, json_path;
+    var content, js_path, json_path, the_content;
     content = JSON.stringify(ret);
-    json_path = path.join(args.src_folder, args.out + '.json');
-    js_path = path.join(args.src_folder, args.out + '.js');
-    (function() {
-      if (__indexOf.call(args.types, 'json') >= 0) {
-        return fs.writeFile(json_path, content);
-      }
-    });
-    (function() {
-      if (__indexOf.call(args.types, 'js') >= 0) {
-        return fs.writeFile(js_path, content);
-      }
-    });
-    if (__indexOf.call(args.types, 'js') >= 0) {
-      fs.writeFile(js_path, content);
+    json_path = outpath + '.json';
+    js_path = outpath + '.js';
+    if (__indexOf.call(args.types, 'json') >= 0) {
+      console.log('writing to', json_path);
+      fs.writeFileSync(json_path, content);
     }
-    return console.log('args', args, content);
+    if (args.amdjs) {
+      the_content = "define(" + content + ");";
+      console.log('writing to', js_path);
+      fs.writeFileSync(js_path, the_content);
+    }
+    return console.log('args', args, content, outpath);
   });
 
 }).call(this);
