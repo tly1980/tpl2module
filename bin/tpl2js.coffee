@@ -49,7 +49,7 @@ parser.addArgument ['-o', '--out'], {
 args = parser.parseArgs()
 
 if args.src_folder[0] != '/'
-    args.src_folder = path.join(__dirname, args.src_folder)
+    args.src_folder = path.join(process.cwd(), args.src_folder)
 
 if args.out == null
     args.out = path.basename(args.src_folder)
@@ -58,7 +58,7 @@ if args.out == null
 if args.out[0] != '/'
     outpath = args.out
 else
-    outpath = path.join(__dirname, args.out)
+    outpath = path.join(process.cwd(), args.out)
 
 
 tpl2js.compile args.src_folder, (ret)->
