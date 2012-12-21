@@ -32,7 +32,8 @@
     "grunt-contrib-coffee": "0.3.2",
     "grunt-simple-mocha": "0.2",
     "mocha": "1.7.4",
-    "walk":"2.2.1"
+    "walk": "2.2.1",
+    "argparse": "0.1.8"
   },
   "keywords": []
 }
