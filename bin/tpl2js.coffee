@@ -21,21 +21,21 @@ parser.addArgument ['--src', '-s'], {
 
 parser.addArgument [ '--json' ], { 
     action: 'appendConst',
-    dest:   'types',
-    help:   'append constant "json" to ouput types',
-    constant: 'json'
+    dest:   'json',
+    help:   'Compile the template into JSON file.',
+    constant: 'storeTrue'
 }
 
-parser.addArgument [ '--js' ], { 
-    action: 'appendConst',
-    dest:   'types',
-    help:   'append constant "js" to ouput types',
-    constant: 'js'
-}
+# parser.addArgument [ '--js' ], { 
+#     action: 'appendConst',
+#     dest:   'types',
+#     help:   'append constant "js" to ouput types',
+#     constant: 'js'
+# }
 
 
 parser.addArgument [ '-a', '--amdjs' ], { 
-    help: 'whether to use amdjs module.',
+    help: 'Compile the template into JS file (in AMDJS/RequiredJS format).',
     action: 'storeTrue',
     defaultValue: false,
 }
@@ -66,7 +66,7 @@ tpl2js.compile args.src_folder, (ret)->
     json_path = outpath + '.json'
     js_path = outpath + '.js'
     
-    if 'json' in args.types
+    if args.json
         console.log 'writing to', json_path
         fs.writeFileSync json_path, content
 
@@ -77,4 +77,4 @@ tpl2js.compile args.src_folder, (ret)->
         fs.writeFileSync js_path, the_content
     
         
-    console.log 'args', args, content, outpath
+    #console.log 'args', args, content, outpath

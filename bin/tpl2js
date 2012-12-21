@@ -3,8 +3,7 @@
 (function() {
   "use strict";
 
-  var ArgumentParser, args, fs, outpath, parser, path, tpl2js,
-    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+  var ArgumentParser, args, fs, outpath, parser, path, tpl2js;
 
   tpl2js = require('..');
 
@@ -29,20 +28,13 @@
 
   parser.addArgument(['--json'], {
     action: 'appendConst',
-    dest: 'types',
-    help: 'append constant "json" to ouput types',
-    constant: 'json'
-  });
-
-  parser.addArgument(['--js'], {
-    action: 'appendConst',
-    dest: 'types',
-    help: 'append constant "js" to ouput types',
-    constant: 'js'
+    dest: 'json',
+    help: 'Compile the template into JSON file.',
+    constant: 'storeTrue'
   });
 
   parser.addArgument(['-a', '--amdjs'], {
-    help: 'whether to use amdjs module.',
+    help: 'Compile the template into JS file (in AMDJS/RequiredJS format).',
     action: 'storeTrue',
     defaultValue: false
   });
@@ -75,16 +67,15 @@
     content = JSON.stringify(ret);
     json_path = outpath + '.json';
     js_path = outpath + '.js';
-    if (__indexOf.call(args.types, 'json') >= 0) {
+    if (args.json) {
       console.log('writing to', json_path);
       fs.writeFileSync(json_path, content);
     }
     if (args.amdjs) {
       the_content = "define(" + content + ");";
       console.log('writing to', js_path);
-      fs.writeFileSync(js_path, the_content);
+      return fs.writeFileSync(js_path, the_content);
     }
-    return console.log('args', args, content, outpath);
   });
 
 }).call(this);
