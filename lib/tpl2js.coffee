@@ -4,7 +4,7 @@ walk = require 'walk'
 fs = require 'fs'
 path = require 'path'
 
-version = '0.10'
+version = '0.12'
 
 compile = (folder, cb=null, exts=['.txt', '.html', '.htm', '.tpl'], dest_path=null) ->
 	ret = {}

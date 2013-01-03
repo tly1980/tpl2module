@@ -48,8 +48,6 @@
 
   args = parser.parseArgs();
 
-  console.log('out', args.out);
-
   if (args.src_folder[0] !== '/') {
     args.src_folder = path.join(process.cwd(), args.src_folder);
   }
@@ -64,8 +62,6 @@
   } else {
     outpath = path.join(process.cwd(), args.out);
   }
-
-  console.log('after, out', args.out);
 
   tpl2js.compile(args.src_folder, function(ret) {
     var content, js_path, json_path, the_content;
