@@ -7,7 +7,7 @@ fs = require 'fs'
 #seq = require 'seq'
 
 parser = new ArgumentParser({
-  version: tpl2js.version,
+  version: tpl2js.version.version,
   addHelp:true,
   description: 'A command line tool turn templates into JS or JSON'
 })
@@ -49,8 +49,6 @@ parser.addArgument ['-o', '--out'], {
 
 args = parser.parseArgs()
 
-console.log 'out', args.out
-
 if args.src_folder[0] != '/'
     args.src_folder = path.join(process.cwd(), args.src_folder)
 
@@ -62,8 +60,6 @@ if args.out[0] != '/'
     outpath = args.out
 else
     outpath = path.join(process.cwd(), args.out)
-
-console.log 'after, out', args.out
 
 tpl2js.compile args.src_folder, (ret)->
     content = JSON.stringify ret
