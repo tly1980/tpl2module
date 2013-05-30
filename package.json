@@ -1,43 +1,43 @@
 {
-  "name": "tpl2js",
-  "description": "Compile templates into JS module",
-  "version": "0.1.0",
-  "homepage": "https://github.com/tly1980/tpl2js",
-  "author": {
-    "name": "Tom Tang",
-    "email": "tly1980@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/tly1980/tpl2js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/tly1980/tpl2js/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/tly1980/tpl2js/blob/master/LICENSE-MIT"
-    }
-  ],
-  "main": "lib/tpl2js",
-  "bin": "bin/tpl2js",
-  "engines": {
-    "node": "*"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "dependencies": {
-    "walk": "2.2.1",
-    "argparse": "0.1.8"
-  },
-  "devDependencies": {
-    "grunt": "~0.3.18a",
-    "grunt-contrib-coffee": "0.3.2",
-    "grunt-simple-mocha": "0.2",
-    "mocha": "1.7.4",
-    "argparse": "0.1.8"
-  },
-  "keywords": []
+    "name": "tpl2js",
+    "description": "Compile templates into JS module",
+    "version": "0.12",
+    "homepage": "https://github.com/tly1980/tpl2js",
+    "author": {
+        "name": "Tom Tang",
+        "email": "tly1980@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/tly1980/tpl2js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/tly1980/tpl2js/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/tly1980/tpl2js/blob/master/LICENSE-MIT"
+        }
+    ],
+    "main": "lib/tpl2js",
+    "bin": "bin/tpl2js",
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "dependencies": {
+        "walk": "2.2.1",
+        "argparse": "0.1.8"
+    },
+    "devDependencies": {
+        "grunt": "~0.3.18a",
+        "grunt-contrib-coffee": "0.3.2",
+        "grunt-simple-mocha": "0.2",
+        "mocha": "1.7.4",
+        "argparse": "0.1.8"
+    },
+    "keywords": []
 }

@@ -7,7 +7,7 @@ fs = require 'fs'
 #seq = require 'seq'
 
 parser = new ArgumentParser({
-  version: tpl2js.version,
+  version: tpl2js.version.version,
   addHelp:true,
   description: 'A command line tool turn templates into JS or JSON'
 })
