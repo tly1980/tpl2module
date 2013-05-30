@@ -1,10 +1,8 @@
 "use strict"
-
 walk = require 'walk'
 fs = require 'fs'
 path = require 'path'
-
-version = '0.10'
+version = require './VERSION.json'
 
 compile = (folder, cb=null, exts=['.txt', '.html', '.htm', '.tpl'], dest_path=null) ->
 	ret = {}
