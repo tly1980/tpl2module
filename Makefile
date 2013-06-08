@@ -2,29 +2,28 @@ LIB=./lib
 BIN=./bin
 TEST=./test
 
-all: bump exec 
+all: lib/tpl2module.js bin/tpl2module
 
-VERSION.json:
-	./bumpversion.coffee
-
-bump: VERSION.json
+bump: 
+	bumpversion
 	cp VERSION.json $(LIB)/.
 	
-js: bump
-	coffee -o $(LIB) -c $(LIB)/tpl2js.coffee
-	coffee -o $(BIN) -c $(BIN)/tpl2js.coffee
+bin/tpl2module: $(LIB)/*.coffee 
+	coffee -o $(BIN) -c $(BIN)
+	echo "#!/usr/bin/env node\n" > $(BIN)/tpl2module
+	cat $(BIN)/main.js >> $(BIN)/tpl2module
+	chmod u+x $(BIN)/tpl2module
+
+lib/tpl2module.js: $(BIN)/*.coffee $(TEST)/*.coffee
+	coffee -o $(LIB) -c $(LIB)
 	coffee -o $(TEST) -c $(TEST)
 
-exec: js
-	mv $(BIN)/tpl2js.coffee $(BIN)/tpl2js
-
-test: js
+test: lib/tpl2module.js bin/tpl2module
 	mocha
 
 clean:
 	rm -f $(LIB)/*.js
 	rm -f $(BIN)/*.js
-	rm -f $(BIN)/tpl2js
-	rm VERSION.json
+	rm -f $(BIN)/tpl2module
 
-.PHONY: bumpversion clean
+.PHONY: bump clean test
