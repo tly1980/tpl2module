@@ -10,10 +10,9 @@
   fs = require('fs');
 
   describe("test tpl2js", function() {
-    var assert, fixtures_folder, templates, tpl2js;
+    var fixtures_folder, templates, tpl2js;
 
     tpl2js = require('..');
-    assert = require('assert');
     path = require('path');
     fixtures_folder = path.resolve(__dirname, './fixtures/');
     templates = null;

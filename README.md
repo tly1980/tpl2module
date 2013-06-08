@@ -6,37 +6,12 @@ Compile templates into JS module
 ### On the server
 Install the module with: `npm install tpl2module`
 
-```javascript
-var tpl2module = require('tpl2module');
-tpl2module.awesome(); // "awesome"
-```
+Most user case would executing tpl2module using command line.
+How ever it is possible to use it as an node.js lib.
 
-### In the browser
-Download the [production version][min] or the [development version][max].
+### Use it as an command-line tool
 
-[min]: https://raw.github.com/minddriven/tpl2module/master/dist/tpl2module.min.js
-[max]: https://raw.github.com/minddriven/tpl2module/master/dist/tpl2module.js
-
-In your web page:
-
-```html
-<script src="dist/tpl2module.min.js"></script>
-<script>
-awesome(); // "awesome"
-</script>
-```
-
-In your code, you can attach tpl2module's methods to any object.
-
-```html
-<script>
-this.exports = Bocoup.utils;
-</script>
-<script src="dist/tpl2module.min.js"></script>
-<script>
-Bocoup.utils.awesome(); // "awesome"
-</script>
-```
+### Use it as an node.js lib
 
 ## Documentation
 _(Coming soon)_
