@@ -5,7 +5,7 @@ TEST=./test
 all: lib/tpl2module.js bin/tpl2module
 
 bump: 
-	bumpversion
+	bumpversion -p -x c
 	cp VERSION.json $(LIB)/.
 	
 bin/tpl2module: $(LIB)/*.coffee 
