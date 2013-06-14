@@ -1,7 +1,7 @@
 {
     "name": "tpl2module",
     "description": "Compile templates into JS module",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "homepage": "https://github.com/tly1980/tpl2module",
     "author": {
         "name": "Tom Tang",
